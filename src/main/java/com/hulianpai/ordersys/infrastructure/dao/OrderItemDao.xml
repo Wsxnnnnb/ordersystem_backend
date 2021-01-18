@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hulianpai.ordersys.infrastructure.dao.OrderItemDao">
+    <insert id="insertOrderItemList">
+        insert into t_order_item_data(order_sn, product_sn, product_name, create_at, update_at)
+        values
+        <foreach collection="itemPoList" item="itemPo" separator=",">
+            (#{itemPo.orderSn}, #{itemPo.productSn},#{itemPo.productName},#{itemPo.createAt},#{itemPo.updateAt})
+        </foreach>
+    </insert>
+    <select id="getItemListByOrderSnList" resultType="com.hulianpai.ordersys.infrastructure.po.OrderItemPo">
+        select * from t_order_item_data
+        <where>
+            order_sn in
+            <foreach collection="orderSnList" item="sn" separator="," open="(" close=")">
+                #{sn}
+            </foreach>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,22 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    name: testdata
+    url: jdbc:mysql://localhost:3306/testdata?useUnicode=true&characterEncoding=UTF-8&ssl=false&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 111111
+  redis:
+    host: localhost
+    port: 6379
+
+##jwt配置
+audience-config:
+  # 代表这个JWT的接收对象,存入audience
+  clientId: hulianpai
+  # 密钥, 经过Base64加密, 可自行替换
+  base64Secret: aHVsaWFucGFp
+  # JWT的签发主体，存入issuer
+  name: randy
+  # 过期时间，时间戳
+  expiresSecond: 172800
